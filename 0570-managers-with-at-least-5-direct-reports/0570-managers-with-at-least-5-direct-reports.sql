@@ -1,7 +1,7 @@
 /* Write your PL/SQL query statement below */
 SELECT name
-FROM Employee
-WHERE id in (SELECT managerId
+FROM Employee E, (SELECT managerId
              FROM Employee
              GROUP BY managerId
-             HAVING count(*) >= 5)
+             HAVING count(*) >= 5) M
+WHERE E.id = M.managerId
